@@ -26,6 +26,9 @@ export class Fp {
     
     if (!isCls(vals, Array)) vals = [ vals ];
     
+    // TODO: Or maybe we should entirely prevent component separators from being passed?
+    // Con: it could create directory traversal issues (although only into children, not parents)
+    // Pro: it makes it easy to work with e.g. `import.meta.dirname`
     vals = vals
       [map](cmp => cmp.split(/[/\\]+/)) // Each String is broken into its components
       .flat(1);                         // Finally flatten into flat list of components
