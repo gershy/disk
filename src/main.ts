@@ -1,8 +1,8 @@
+import { isCls } from '@gershy/clearing';
 import nodePath from 'node:path';
 import { Lore, Fp, LineageLock, Scholar } from './setup.ts';
 import fs, { wrapFsError } from './fs.ts';
 import retry from '@gershy/util-retry';
-import { isCls } from '@gershy/clearing';
 import { Readable } from 'node:stream';
 
 export class DiskLore implements Lore {
