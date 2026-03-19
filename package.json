@@ -1,6 +1,6 @@
 {
   "name": "@gershy/disk",
-  "version": "0.0.10",
+  "version": "0.0.11",
   "description": "Simplified filesystem access",
   "keywords": [
     "fs",
@@ -19,7 +19,7 @@
   "homepage": "https://github.com/gershy/disk#readme",
   "license": "ISC",
   "peerDependencies": {
-    "@gershy/clearing": "^0.0.29"
+    "@gershy/clearing": "^0.0.32"
   },
   "devDependencies": {
     "@types/node": "^24.10.1",
@@ -27,7 +27,7 @@
     "typescript": "^5.9.3"
   },
   "dependencies": {
-    "@gershy/util-retry": "^0.0.4"
+    "@gershy/util-retry": "^0.0.6"
   },
   "type": "module",
   "files": [

@@ -2,6 +2,13 @@ import './main.ts';
 import fs from 'node:fs/promises';
 import { assertEqual, cmpAny, testRunner } from '../build/utils.test.ts';
 import { Fact, rootFact } from './main.ts';
+import '@gershy/clearing';
+
+const map:    typeof cl.map    = cl.map;
+const mod:    typeof cl.mod    = cl.mod;
+const toArr:  typeof cl.toArr  = cl.toArr;
+const toObj:  typeof cl.toObj  = cl.toObj;
+const allObj: typeof cl.allObj = cl.allObj;
 
 // Type testing
 (async () => {
@@ -183,6 +190,10 @@ testRunner([
     await Promise.all(
       (50)[toArr](v => fact.kid([ 'par', `kid${v}` ]).setData(v.toString(10)))
     );
+    
+    // const v = ({ a: 1, b: 2 } as Obj<number>);
+    // v.hasOwnProperty('a');
+    // v[at]('a');
     
     const kids = await fact.kid([ 'par' ]).getKids();
     assertEqual(

@@ -1,7 +1,9 @@
 import nodePath, { PlatformPath } from 'node:path';
 import { Stats } from 'node:fs';
 import { Readable } from 'node:stream';
-import { isCls, getClsName, skip } from '@gershy/clearing';
+import '@gershy/clearing';
+
+const { isCls, map, find, mod, skip, toArr, getClsName, has, later, rem, toObj } = clearing;
 
 export type Lock = { type: string, fp: Fp, prm: PromiseLater };
 export type LineageLock = { fp: Fp, prm: PromiseLater };

@@ -1,9 +1,17 @@
-import { isCls } from '@gershy/clearing';
+import '@gershy/clearing';
 import nodePath from 'node:path';
 import { Lore, Fp, LineageLock, Scholar } from './setup.ts';
 import fs, { wrapFsError } from './fs.ts';
 import retry from '@gershy/util-retry';
 import { Readable } from 'node:stream';
+
+const int32:  typeof cl.int32  = cl.int32;
+const toStr:  typeof cl.toStr  = cl.toStr;
+const base32: typeof cl.base32 = cl.base32;
+const mod:    typeof cl.mod    = cl.mod;
+const empty:  typeof cl.empty  = cl.empty;
+const isCls:  typeof cl.isCls  = cl.isCls;
+const later:  typeof cl.later  = cl.later;
 
 export class DiskLore implements Lore {
   

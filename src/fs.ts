@@ -1,5 +1,10 @@
 import nodeFs from 'node:fs';
-import { inCls, safe } from '@gershy/clearing';
+import '@gershy/clearing';
+
+const { safe, inCls } = cl;
+const mod:   typeof cl.mod   = cl.mod;
+const map:   typeof cl.map   = cl.map;
+const slice: typeof cl.slice = cl.slice;
 
 export const wrapFsError = (anchorErr: any, opts: { cause: any, name: string, fsp: string }) => {
   throw anchorErr[mod]({ cause: opts.cause, msg: `Failed low-level ${opts.name} on "${opts.fsp}"` });
