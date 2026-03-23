@@ -1,6 +1,6 @@
 {
   "name": "@gershy/disk",
-  "version": "0.0.12",
+  "version": "0.0.13",
   "description": "Simplified filesystem access",
   "keywords": [
     "fs",

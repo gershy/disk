@@ -29,8 +29,9 @@ export class Fp {
     if (!isCls(vals, Array)) vals = [ vals ];
     
     // TODO: Or maybe we should entirely prevent component separators from being passed?
-    // Con: it could create directory traversal issues (although only into children, not parents)
-    // Pro: it makes it easy to work with e.g. `import.meta.dirname`
+    // Pro: it could create directory traversal issues (although only into children, not parents)
+    // Con: it makes it hard to work with e.g. `import.meta.dirname`
+    // - Consider something like `Fp.fromUnsafeFilepath`
     vals = vals
       [map](cmp => cmp.split(/[/\\]+/)) // Each String is broken into its components
       .flat(1);                         // Finally flatten into flat list of components
@@ -48,6 +49,7 @@ export class Fp {
     
   }
   
+  componentDelimiter() { return this.path.sep; }
   toString() { return this.cmps.length ? `file://${this.cmps.join('/')}` : `file://${this.path.resolve('/').split(/[/\\]/).filter(Boolean).join('/')}`; }
   count() { return this.cmps.length; }
   kid(fp: string | string[]) { return new Fp([ this.cmps, fp ].flat(1)); }

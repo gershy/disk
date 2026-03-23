@@ -1,5 +1,6 @@
 import '@gershy/clearing';
 import nodePath from 'node:path';
+import { tmpdir } from 'node:os';
 import { Lore, Fp, LineageLock, Scholar } from './setup.ts';
 import fs, { wrapFsError } from './fs.ts';
 import retry from '@gershy/util-retry';
@@ -346,6 +347,7 @@ export class DiskLore implements Lore {
 export const rootDiskLore = new DiskLore();
 export const rootTx = new Scholar(rootDiskLore, []);
 export const rootFact = rootTx.getEnt();
+export const tempFact = rootFact.kid([ ...tmpdir().split(rootFact.fp.componentDelimiter()) ]);
 
 export      { Fp, Fact, Scholar } from './setup.ts';
 export type { Lore }              from './setup.ts';
