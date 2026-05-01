@@ -109,6 +109,8 @@ type Writable = {
 };
 export interface Lore {
   
+  // Lore is a data storage medium / engine / service
+  
   safeStat: (fp: Fp) => Promise<null | Stats>, // TODO: AbstractSys shouldn't think of this in terms of "stat" - it should just return metadata like byte-size and entity type
   getType: (fp: Fp) => Promise<null | 'leaf' | 'node'>,
   swapLeafToNode: (fp: Fp, opts?: { tmpCmp?: string }) => Promise<void>,
@@ -140,6 +142,8 @@ export interface Lore {
 };
 
 export class Scholar<L extends Lore> {
+  
+  // Scholars are the unit of isolation within a Lore
   
   public fp: Fp;
   private lore: Lore;
