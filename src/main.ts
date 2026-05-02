@@ -1,7 +1,7 @@
 import '@gershy/clearing';
 import nodePath from 'node:path';
 import { tmpdir } from 'node:os';
-import { Lore, Fp, LineageLock, Scholar } from './setup.ts';
+import { Scholar, Fp, type Lore, type LineageLock } from './setup.ts';
 import fs, { wrapFsError } from './fs.ts';
 import retry from '@gershy/util-retry';
 import { Readable } from 'node:stream';

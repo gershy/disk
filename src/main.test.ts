@@ -18,6 +18,7 @@ const allObj: typeof cl.allObj = cl.allObj;
   type Tests = {
     1: Enforce<{ x: 'y' }, { x: 'y' }>,
   };
+  if (0) ((v?: Tests) => void 0)();
   
 })();
 
@@ -244,7 +245,7 @@ testRunner([
     
     const assertEmptyAllEncodings = async () => {
       
-      const vals = await Promise[allObj]({
+      const vals = await Promise[allObj]<string | Buffer | Json>({
         str:  data.getData('str'),
         bin:  data.getData('bin'),
         json: data.getData('json')
@@ -261,7 +262,7 @@ testRunner([
     
     await data.setData('[1,2,3,{"x":"y"}]');
     assertEqual(
-      await Promise[allObj]({
+      await Promise[allObj]<string | Buffer | Json>({
         str:  data.getData('str'),
         bin:  data.getData('bin'),
         json: data.getData('json')
@@ -278,7 +279,7 @@ testRunner([
     
     await data.setData(Buffer.from([ 0, 1, 2, 3, 4, 5 ]));
     assertEqual(
-      await Promise[allObj]({
+      await Promise[allObj]<string | Buffer | Json>({
         str:  data.getData('str'),
         bin:  data.getData('bin'),
         json: data.getData('json').then(

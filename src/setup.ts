@@ -1,4 +1,4 @@
-import nodePath, { PlatformPath } from 'node:path';
+import nodePath, { type PlatformPath } from 'node:path';
 import { Stats } from 'node:fs';
 import { Readable } from 'node:stream';
 import '@gershy/clearing';
