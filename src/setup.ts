@@ -21,7 +21,7 @@ export class Fp {
   // All components must have a char that isn't "." (we allow "~" at this level - FilesysTransaction manages this char)
   static illegalComponentRegex = /^[.]+$/;
   
-  private path: PlatformPath;
+  protected path: PlatformPath;
   public cmps: string[];
   public fspVal: null | string;
   constructor(vals: string[], path=nodePath) {
@@ -146,10 +146,10 @@ export class Scholar<L extends Lore> {
   // Scholars are the unit of isolation within a Lore
   
   public fp: Fp;
-  private lore: Lore;
-  private locks: Set<Lock>;
-  private active: boolean;
-  private endFns: Array<(...args: any[]) => any>;
+  protected lore: Lore;
+  protected locks: Set<Lock>;
+  protected active: boolean;
+  protected endFns: Array<(...args: any[]) => any>;
   
   constructor(lore: L, fp: string[] | Fp = []) {
     
