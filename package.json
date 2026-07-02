@@ -1,6 +1,6 @@
 {
   "name": "@gershy/disk",
-  "version": "0.0.17",
+  "version": "0.0.18",
   "author": "Gershom Maes",
   "description": "Simplified filesystem access",
   "keywords": [
@@ -23,13 +23,13 @@
   ],
   "license": "ISC",
   "peerDependencies": {
-    "@gershy/clearing": "^0.0.44"
+    "@gershy/clearing": "^0.0.45"
   },
   "devDependencies": {
     "@types/node": "^24.10.1"
   },
   "dependencies": {
-    "@gershy/util-retry": "^0.0.13"
+    "@gershy/util-retry": "^0.0.14"
   },
   "exports": {
     ".": {
