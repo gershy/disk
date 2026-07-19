@@ -1,6 +1,6 @@
 {
   "name": "@gershy/disk",
-  "version": "0.0.21",
+  "version": "0.0.22",
   "author": "Gershom Maes",
   "description": "Simplified filesystem access",
   "keywords": [
