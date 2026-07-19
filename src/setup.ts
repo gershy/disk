@@ -511,6 +511,7 @@ export class Fact {
   // exists but doesn't traverse any shallower than the Tx backing the Ent (note consumers could
   // already use `new Ent(ent.tx.fp).kid(...)` to access anything within the transaction)
   
+  /*
   public static dummy = {
     
     getCmps: () => [],
@@ -529,8 +530,8 @@ export class Fact {
     toString:  () => 'DummyFact',
     [cl.limn]: () => 'DummyFact'
     
-    
   };
+  */
   
   public fp: Fp;
   public tx: Scholar<Lore>;
