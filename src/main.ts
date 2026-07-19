@@ -16,7 +16,6 @@ const later:  typeof cl.later  = cl.later;
 
 export class DiskLore implements Lore {
   
-  static defaultDataCmp =  '~';
   static getTmpCmp = () => `~${(Number[int32] * Math.random())[toStr](String[base32], 7)}`;
   
   constructor() {}
@@ -45,7 +44,7 @@ export class DiskLore implements Lore {
     
     const fsp = fp.fsp();                              // Path to original file
     const tmpFsp = fp.sib(tmpCmp).fsp();               // Path to temporary file (sibling of original file)
-    const valFsp = fp.kid(DiskLore.defaultDataCmp).fsp(); // Path to final file
+    const valFsp = fp.kid('~').fsp(); // Path to final file
     
     await fs.rename(fsp, tmpFsp);    // Move file out of the way
     await fs.mkdir(fsp);             // Set directory where file used to be
