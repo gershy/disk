@@ -163,9 +163,7 @@ export class Scholar<L extends Lore> {
   
   toString() { return `${getClsName(this)} @ ${this.fp.toString()}`; }
   
-  getEnt() {
-    return new Fact(this, this.fp);
-  }
+  getFact() { return new Fact(this, this.fp); }
   checkFp(fp: Fp) {
     if (!this.fp.contains(fp))            throw Error('fp is not contained within the transaction')[mod]({ fp, tx: this });
     if (fp.cmps.some(cmp => cmp === '~')) throw Error('fp must not contain "~" component')[mod]({ fp });
@@ -369,7 +367,7 @@ export class Scholar<L extends Lore> {
     } else {
       
       // Setting a non-zero amount of data requires ensuring that all
-      // ancestor nodes exist and finally writing the data
+      // ancestor nodes exist, and finally writing the data
       
       const lineageLocks = [ ...this.fp.getLineage(fp) ][map](fp => ({ type: 'nodeWrite', fp, prm: Promise[later]() }));
       const nodeLock = { type: 'nodeWrite', fp };
@@ -513,6 +511,27 @@ export class Fact {
   // exists but doesn't traverse any shallower than the Tx backing the Ent (note consumers could
   // already use `new Ent(ent.tx.fp).kid(...)` to access anything within the transaction)
   
+  public static dummy = {
+    
+    getCmps: () => [],
+    kid: () => Fact.dummy,
+    par: () => Fact.dummy,
+    getData: async (enc: 'bin' | 'str' | 'json') => ({ bin: Buffer.alloc(0), str: '', json: null })[enc],
+    setData: async () => {},
+    getDataBytes: async () => 0,
+    exists: async () => false,
+    rem: async () => {},
+    getDataHeadStream: () => Promise.reject(Error('logic missing')),
+    getDataTailStream: () => Promise.reject(Error('logic missing')),
+    getKids: async () => ({}),
+    kids: async function*() {},
+    fsp:       () => '/~dummy',
+    toString:  () => 'DummyFact',
+    [cl.limn]: () => 'DummyFact'
+    
+    
+  };
+  
   public fp: Fp;
   public tx: Scholar<Lore>;
   
@@ -563,11 +582,9 @@ export class Fact {
   }
   
   // When opts are omitted, Buffer becomes an option, and strings remain in utf8
-  async setData(data: null | string | Buffer | Obj<Json> | Json[]) {
-    return this.tx.setData(this.fp, data);
-  }
+  async setData(data: null | string | Buffer | Obj<Json> | Json[]) { return this.tx.setData(this.fp, data); }
   async getDataBytes() { return this.tx.getDataBytes(this.fp); }
-  async exists() { return this.getDataBytes().then(v => v > 0); }
+  async exists() { return this.getDataBytes().then(v => v > 0); } // TODO: exists should return true for nodes without data!
   async rem() { return this.tx.remSubtree(this.fp); }
   async getDataHeadStream() { return this.tx.getDataHeadStream(this.fp); }
   async getDataTailStream() { return this.tx.getDataTailStream(this.fp); }
@@ -580,5 +597,6 @@ export class Fact {
   }
   toString() { return this.fp.toString(); }
   fsp() { return this.fp.fsp(); }
+  [cl.limn]() { return `Fact${this.fp.fsp()}`; }
   
 };

@@ -134,7 +134,7 @@ export class DiskLore implements Lore {
   }
   async remNode(fp: Fp) {
     
-    try              { await fs.unlink(fp.fsp()); }
+    try             { await fs.unlink(fp.fsp()); }
     catch(err: any) { if (err.code !== 'ENOENT') throw err; }
     
   }
@@ -346,7 +346,7 @@ export class DiskLore implements Lore {
 
 export const rootDiskLore = new DiskLore();
 export const rootTx = new Scholar(rootDiskLore, []);
-export const rootFact = rootTx.getEnt();
+export const rootFact = rootTx.getFact();
 export const tempFact = rootFact.kid([ ...tmpdir().split(rootFact.fp.componentDelimiter()) ]);
 
 export      { Fp, Fact, Scholar } from './setup.ts';

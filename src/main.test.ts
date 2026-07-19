@@ -27,7 +27,7 @@ const isolated = async (fn: (fact: Fact) => Promise<void>) => {
   let fact: null | Fact = null;
   try {
     
-    fact = await rootFact.kid([ import.meta.dirname, '.isolatedTest' ], { newTx: true });
+    fact = await rootFact.kid([ import.meta.dirname, '.isolated' ], { newTx: true });
     await fn(fact);
     
   } finally {
